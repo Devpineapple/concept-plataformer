@@ -14,6 +14,8 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
+let Hitting_wall_right = 0
+let Hitting_wall_left = 0
 let jump_times = 0
 let is_grounded = 0
 let mySprite: Sprite = null
@@ -57,23 +59,42 @@ scene.cameraFollowSprite(mySprite)
 controller.moveSprite(mySprite, 100, 0)
 game.onUpdate(function () {
     console.log("Is_grounded =" + is_grounded)
+    console.log("jump_times =" + jump_times)
+    console.log("Hitting_wall_left = " + Hitting_wall_left)
+    console.log("Hitting_wall_right =" + jump_times)
     if (mySprite.isHittingTile(CollisionDirection.Bottom)) {
         is_grounded = 1
     } else {
         is_grounded = 0
     }
     if (mySprite.isHittingTile(CollisionDirection.Left)) {
+        Hitting_wall_left = 1
+        Hitting_wall_right = 0
+        if (Hitting_wall_left == 1) {
+            mySprite.vy += -2
+        }
         mySprite.vy += 0.5
         jump_times = 1
     } else if (mySprite.isHittingTile(CollisionDirection.Right)) {
-        mySprite.vy += 0.5
-        mySprite.vx += -1
-        mySprite.vx += 0
+        Hitting_wall_left = 0
+        Hitting_wall_right = 1
+        if (Hitting_wall_right == 1) {
+            mySprite.vy += 2
+        }
+        mySprite.ax += 0.1
         jump_times = 1
     } else {
+        Hitting_wall_right = 0
+        Hitting_wall_left = 0
+        mySprite.ax += 0
         mySprite.vy += 1
     }
     if (is_grounded == 1) {
+        Hitting_wall_left = 0
+        Hitting_wall_right = 0
+        if ((Hitting_wall_left && Hitting_wall_right) == 0) {
+            mySprite.ax = 0
+        }
         jump_times = 0
     }
 })
