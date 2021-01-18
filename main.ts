@@ -14,7 +14,6 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-let textSprite: TextSprite = null
 let jump_times = 0
 let is_grounded = 0
 let mySprite: Sprite = null
@@ -57,7 +56,7 @@ tiles.setTilemap(tiles.createTilemap(hex`200010000000000000000000000000000000000
 scene.cameraFollowSprite(mySprite)
 controller.moveSprite(mySprite, 100, 0)
 game.onUpdate(function () {
-    textSprite = textsprite.create("is_grounded:" + is_grounded, 3, 2)
+    console.log("Is_grounded =" + is_grounded)
     if (mySprite.isHittingTile(CollisionDirection.Bottom)) {
         is_grounded = 1
     } else {
