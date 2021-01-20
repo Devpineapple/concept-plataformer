@@ -1,7 +1,7 @@
 namespace SpriteKind {
     export const ground = SpriteKind.create()
 }
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
     [img`
@@ -306,6 +306,9 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     150,
     true
     )
+})
+controller.A.onEvent(ControllerButtonEvent.Released, function () {
+	
 })
 let Hitting_wall_right = 0
 let Hitting_wall_left = 0
