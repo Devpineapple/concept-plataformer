@@ -4,7 +4,8 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "arcade-text": "github:microsoft/arcade-text#v1.3.0"
+        "arcade-text": "github:microsoft/arcade-text#v1.3.0",
+        "animation": "*"
     },
     "files": [
         "main.blocks",
